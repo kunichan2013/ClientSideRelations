@@ -1,1 +1,469 @@
-﻿<?xml version="1.0" encoding="UTF-8"?><EntityModelCatalog><dbInfo name="Model" uuid="DEB2380315EE8E47AF7052ECFC4FADBC"/><dataClasses name="Company" className="Company" collectionName="Companies" scope="public" uuid="A4A9329595AD43CE89EFB941CC77638E" tablePos="1">	<extraProperties ____objectunic="true" panelColor="#C4BD97">		<panel ____objectunic="true" isOpen="true" pathVisible="true">			<position ____objectunic="true" X="25" Y="20"/></panel></extraProperties>	<attributes name="ID" kind="storage" scope="public" uuid="A4077224F4F940338968EFBC35662975" fieldPos="1" unique="true" autosequence="true" type="long" primKey="true"/>	<attributes name="name" kind="storage" scope="public" uuid="DF731657C85447EE9F392FADDFCEC34D" fieldPos="2" type="string"/>	<attributes name="employees" kind="relatedEntities" scope="public" type="People" reversePath="true" path="employer"/>	<attributes name="leads" kind="relatedEntities" scope="public" type="Leads" reversePath="true" path="company"/>	<attributes name="notes" kind="relatedEntities" scope="public" type="Notes" reversePath="true" path="company"/>	<events kind="onSave" from="guidedModel.Company.events.onSave"/>	<events kind="onValidate" from="guidedModel.Company.events.onValidate"/>	<methods name="returnCompanies" applyTo="dataClass" scope="public" from="guidedModel.Company.methods.returnCompanies"/>	<methods name="getNewCompanies" applyTo="dataClass" from="guidedModel.Company.methods.getNewCompanies" scope="public"/></dataClasses><dataClasses name="Lead" className="Lead" collectionName="Leads" scope="public" uuid="86EDC6AC558D45C6989F124918ED1BF5" tablePos="3">	<extraProperties ____objectunic="true" panelColor="#D8D8D8">		<panel ____objectunic="true" isOpen="true" pathVisible="true">			<position ____objectunic="true" X="539" Y="327"/></panel></extraProperties>	<attributes name="ID" kind="storage" scope="public" uuid="EC624AE66CB64ED2839CDC3C18081A9D" fieldPos="1" unique="true" autosequence="true" type="long" primKey="true"/>	<attributes name="person" kind="relatedEntity" scope="public" type="Person" uuid="B53A82E34B984EABAAE87DDCBE8B96A4" fieldPos="3" path="Person"/>	<attributes name="company" kind="relatedEntity" scope="public" type="Company" uuid="3807548B5F6E4C979B08F9DBA514FC1B" fieldPos="2" path="Company"/>	<attributes name="notes" kind="relatedEntities" scope="public" type="Notes" reversePath="true" path="lead"/>	<attributes name="leadPersons" kind="relatedEntities" scope="public" type="LeadPersons" reversePath="true" path="lead"/>	<attributes name="involvedParties" kind="relatedEntities" scope="public" type="People" path="leadPersons.person"/>	<attributes name="title" kind="storage" scope="public" uuid="14FEB55ED1A842E0A0940390873C3213" fieldPos="4" type="string"/>	<attributes name="type" kind="storage" scope="public" uuid="13D3F3BED8C141A1952AA395247D740A" fieldPos="5" type="string"/></dataClasses><dataClasses name="LeadPerson" className="LeadPerson" collectionName="LeadPersons" scope="public" uuid="55AEE5EA0B094A03A938862E278934E9" tablePos="5">	<extraProperties ____objectunic="true" panelColor="#996699">		<panel ____objectunic="true" isOpen="true" pathVisible="true">			<position ____objectunic="true" X="416" Y="720"/></panel></extraProperties>	<attributes name="ID" kind="storage" scope="public" uuid="4FDBD655CEBA400E830F82252EB6EEAB" fieldPos="1" unique="true" autosequence="true" type="long" primKey="true"/>	<attributes name="lead" kind="relatedEntity" scope="public" type="Lead" uuid="56F0F88BC8A9462DB508D4B8D27B0A03" fieldPos="2" path="Lead"/>	<attributes name="person" kind="relatedEntity" scope="public" type="Person" uuid="F4DE2A10AE874E7A8DFE429F873184A8" fieldPos="3" path="Person"/></dataClasses><dataClasses name="Note" className="Note" collectionName="Notes" scope="public" uuid="BD572164D4CD4666BFC8C9707F14A205" tablePos="4">	<extraProperties ____objectunic="true" panelColor="#76923C">		<panel ____objectunic="true" isOpen="true" pathVisible="true">			<position ____objectunic="true" X="371" Y="70"/></panel></extraProperties>	<attributes name="ID" kind="storage" scope="public" uuid="11C26AFD2B2D4D9DA99414C0802261CB" fieldPos="1" unique="true" autosequence="true" type="long" primKey="true"/>	<attributes name="company" kind="relatedEntity" scope="public" type="Company" uuid="C626DAA414324273973D991DE73F4B3D" fieldPos="2" path="Company"/>	<attributes name="person" kind="relatedEntity" scope="public" type="Person" uuid="47E0841D5A25460FB04D9F6DB8CD4539" fieldPos="4" path="Person"/>	<attributes name="lead" kind="relatedEntity" scope="public" type="Lead" uuid="387DD901D7A642FD8BF74006B9D023BB" fieldPos="3" path="Lead"/>	<attributes name="note" kind="storage" scope="public" uuid="9D6C973D57724C049B3C215E17762206" fieldPos="5" type="string"/></dataClasses><dataClasses name="Person" className="Person" collectionName="People" scope="public" uuid="4022E6F1098D49908043C78B08658518" tablePos="2">	<extraProperties ____objectunic="true" panelColor="#BFBFBF">		<panel ____objectunic="true" isOpen="true" pathVisible="true">			<position ____objectunic="true" X="65" Y="351"/></panel></extraProperties>	<attributes name="ID" kind="storage" scope="public" uuid="E2C5A9B57BAA4C2C96FDD0FBBD89944B" fieldPos="1" unique="true" autosequence="true" type="long" primKey="true"/>	<attributes name="firstName" kind="storage" scope="public" uuid="E9E4228952964B63A69577AE28D4AB6A" fieldPos="2" type="string"/>	<attributes name="lastName" kind="storage" scope="public" uuid="B7E30DF44A284510A8E5921F79A6B070" fieldPos="3" type="string"/>	<attributes name="fullName" kind="calculated" scope="public" type="string" scriptKind="javascript">		<onGet from="guidedModel.Person.fullName.onGet"/>	</attributes>	<attributes name="employer" kind="relatedEntity" scope="public" type="Company" uuid="36779B8F75C44046B97B9EB427FF3BED" fieldPos="4" path="Company"/>	<attributes name="employerName" kind="alias" scope="public" columnName="name" type="string" path="employer.name"/>	<attributes name="leads" kind="relatedEntities" scope="public" type="Leads" reversePath="true" path="person"/>	<attributes name="notes" kind="relatedEntities" scope="public" type="Notes" reversePath="true" path="person"/>	<attributes name="leadPersons" kind="relatedEntities" scope="public" type="LeadPersons" reversePath="true" path="person"/></dataClasses></EntityModelCatalog>
+﻿{
+	"dbInfo": [
+		{
+			"name": "Model",
+			"uuid": "DEB2380315EE8E47AF7052ECFC4FADBC"
+		}
+	],
+	"dataClasses": [
+		{
+			"name": "Company",
+			"className": "Company",
+			"collectionName": "Companies",
+			"scope": "public",
+			"uuid": "A4A9329595AD43CE89EFB941CC77638E",
+			"extraProperties": {
+				"panelColor": "#C4BD97",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "25",
+						"Y": "20"
+					}
+				}
+			},
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "A4077224F4F940338968EFBC35662975",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "name",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "DF731657C85447EE9F392FADDFCEC34D",
+					"type": "string"
+				},
+				{
+					"name": "employees",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "People",
+					"reversePath": true,
+					"path": "employer"
+				},
+				{
+					"name": "leads",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "Leads",
+					"reversePath": true,
+					"path": "company"
+				},
+				{
+					"name": "notes",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "Notes",
+					"reversePath": true,
+					"path": "company"
+				}
+			],
+			"events": [
+				{
+					"kind": "onSave",
+					"from": "guidedModel.Company.events.onSave"
+				},
+				{
+					"kind": "onValidate",
+					"from": "guidedModel.Company.events.onValidate"
+				}
+			],
+			"methods": [
+				{
+					"name": "getNewCompanies",
+					"applyTo": "dataClass",
+					"scope": "public",
+					"from": "guidedModel.Company.methods.getNewCompanies"
+				},
+				{
+					"name": "returnCompanies",
+					"applyTo": "dataClass",
+					"scope": "public",
+					"from": "guidedModel.Company.methods.returnCompanies"
+				}
+			]
+		},
+		{
+			"name": "Lead",
+			"className": "Lead",
+			"collectionName": "Leads",
+			"scope": "public",
+			"uuid": "86EDC6AC558D45C6989F124918ED1BF5",
+			"extraProperties": {
+				"panelColor": "#D8D8D8",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "539",
+						"Y": "327"
+					}
+				}
+			},
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "EC624AE66CB64ED2839CDC3C18081A9D",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "person",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "B53A82E34B984EABAAE87DDCBE8B96A4",
+					"type": "Person",
+					"path": "Person"
+				},
+				{
+					"name": "company",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "3807548B5F6E4C979B08F9DBA514FC1B",
+					"type": "Company",
+					"path": "Company"
+				},
+				{
+					"name": "notes",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "Notes",
+					"reversePath": true,
+					"path": "lead"
+				},
+				{
+					"name": "leadPersons",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "LeadPersons",
+					"reversePath": true,
+					"path": "lead"
+				},
+				{
+					"name": "involvedParties",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "People",
+					"path": "leadPersons.person"
+				},
+				{
+					"name": "title",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "14FEB55ED1A842E0A0940390873C3213",
+					"type": "string"
+				},
+				{
+					"name": "type",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "13D3F3BED8C141A1952AA395247D740A",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"name": "LeadPerson",
+			"className": "LeadPerson",
+			"collectionName": "LeadPersons",
+			"scope": "public",
+			"uuid": "55AEE5EA0B094A03A938862E278934E9",
+			"extraProperties": {
+				"panelColor": "#996699",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "416",
+						"Y": "720"
+					}
+				}
+			},
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "4FDBD655CEBA400E830F82252EB6EEAB",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "lead",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "56F0F88BC8A9462DB508D4B8D27B0A03",
+					"type": "Lead",
+					"path": "Lead"
+				},
+				{
+					"name": "person",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "F4DE2A10AE874E7A8DFE429F873184A8",
+					"type": "Person",
+					"path": "Person"
+				}
+			]
+		},
+		{
+			"name": "Note",
+			"className": "Note",
+			"collectionName": "Notes",
+			"scope": "public",
+			"uuid": "BD572164D4CD4666BFC8C9707F14A205",
+			"extraProperties": {
+				"panelColor": "#76923C",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "371",
+						"Y": "70"
+					}
+				}
+			},
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "11C26AFD2B2D4D9DA99414C0802261CB",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "company",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "C626DAA414324273973D991DE73F4B3D",
+					"type": "Company",
+					"path": "Company"
+				},
+				{
+					"name": "person",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "47E0841D5A25460FB04D9F6DB8CD4539",
+					"type": "Person",
+					"path": "Person"
+				},
+				{
+					"name": "lead",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "387DD901D7A642FD8BF74006B9D023BB",
+					"type": "Lead",
+					"path": "Lead"
+				},
+				{
+					"name": "note",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "9D6C973D57724C049B3C215E17762206",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"name": "Person",
+			"className": "Person",
+			"collectionName": "People",
+			"scope": "public",
+			"uuid": "4022E6F1098D49908043C78B08658518",
+			"extraProperties": {
+				"panelColor": "#BFBFBF",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "65",
+						"Y": "351"
+					}
+				}
+			},
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "E2C5A9B57BAA4C2C96FDD0FBBD89944B",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "firstName",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "E9E4228952964B63A69577AE28D4AB6A",
+					"type": "string"
+				},
+				{
+					"name": "lastName",
+					"kind": "storage",
+					"scope": "public",
+					"uuid": "B7E30DF44A284510A8E5921F79A6B070",
+					"type": "string"
+				},
+				{
+					"name": "fullName",
+					"kind": "calculated",
+					"scope": "public",
+					"type": "string",
+					"scriptKind": "javascript",
+					"onGet": [
+						{
+							"from": "guidedModel.Person.fullName.onGet"
+						}
+					]
+				},
+				{
+					"name": "employer",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"uuid": "36779B8F75C44046B97B9EB427FF3BED",
+					"type": "Company",
+					"path": "Company"
+				},
+				{
+					"name": "employerName",
+					"kind": "alias",
+					"scope": "public",
+					"type": "string",
+					"path": "employer.name"
+				},
+				{
+					"name": "leads",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "Leads",
+					"reversePath": true,
+					"path": "person"
+				},
+				{
+					"name": "notes",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "Notes",
+					"reversePath": true,
+					"path": "person"
+				},
+				{
+					"name": "leadPersons",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "LeadPersons",
+					"reversePath": true,
+					"path": "person"
+				}
+			]
+		}
+	],
+	"extraProperties": {
+		"model": {
+			"relationCurve": {
+				"run": true,
+				"mode": 1
+			},
+			"workspaceLeft": 0,
+			"workspaceTop": 284
+		},
+		"classes": {
+			"Company": {
+				"panelColor": "#C4BD97",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "25",
+						"Y": "20"
+					}
+				}
+			},
+			"Lead": {
+				"panelColor": "#D8D8D8",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "539",
+						"Y": "327"
+					}
+				}
+			},
+			"LeadPerson": {
+				"panelColor": "#996699",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "416",
+						"Y": "720"
+					}
+				}
+			},
+			"Note": {
+				"panelColor": "#76923C",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "371",
+						"Y": "70"
+					}
+				}
+			},
+			"Person": {
+				"panelColor": "#BFBFBF",
+				"__CDATA": "\n\n\t\t\n",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": "true",
+					"__CDATA": "\n\n\t\t\t\n",
+					"position": {
+						"X": "65",
+						"Y": "351"
+					}
+				}
+			}
+		},
+		"version": "1"
+	},
+	"toJSON": true
+}
